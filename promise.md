@@ -70,8 +70,13 @@ function resolve(newValue) {
 
 接收promise数组，当所有的promise数组成功执行完毕后，返回成功结果数组的promise。如果某个promise失败，则返回失败信息，并且终止剩下的操作。
 
+#### Promise.once  
+
+接收promise数组，如果有一个成功执行完毕，则返回当前成功结果，并终止剩下操作。
+
 
 ### 参考链接  
 
 [深入理解Promise](http://coderlt.coding.me/2016/12/04/promise-in-depth-an-introduction-2/)  
-[promises-in-wicked-detail](https://www.mattgreer.org/articles/promises-in-wicked-detail/)
+[promises-in-wicked-detail](https://www.mattgreer.org/articles/promises-in-wicked-detail/)  
+[promise/A+规范](https://promisesaplus.com/)
