@@ -1,7 +1,7 @@
 ## microtask & macrotask  
 
 - macro-task: 包括``script(整体)``、``setTimeout``、``setImmediate``、``setInterval``、``I/O``、``UI renderiing``  
-- micro-task: 包括``process.nextTick``、``Promise``、``MutationObserver``   
+- micro-task: 包括``process.nextTick``、``Promise``、``MutationObserver``, ``Object.observe``   
 
 每个进程都包含自身的“事件循环”，在事件循环中，进程会每时每刻检查``任务队列（task queues）``，并把任务队列中的任务执行。此外，还包含``macro-task队列``和``micro-task队列``。大概的示意图如下：  
 
@@ -199,4 +199,7 @@ parent setTimeout
 
 ![micro-macro-task-8](./upload/micro-macro-task-8.jpg)
 
-事件循环会先把task队列中的事件消耗先。同时，由于，执行child的onclick事件时，会产生一个mutation observer,同时，micro-task队列中包含了mutation observer，所以，parent中的mutation observer并不会放入到micro-task队列中。
+事件循环会先把task队列中的事件消耗先。同时，由于，执行child的onclick事件时，会产生一个mutation observer,同时，micro-task队列中包含了mutation observer，所以，parent中的mutation observer并不会放入到micro-task队列中。  因此，micro-task中只会有一个mutation observer任务。
+
+
+[参考博客](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)
