@@ -17,7 +17,7 @@ mongo是一个优秀的nosql数据库，在海量数据存储中，mongo起着�
 
 首先建立三个主从服务器（mongo2, mongo3, mongo4），一个监督服务器(mongo5)。
 
-![enter image description here](./upload/bf35c1ae3ae8168ba898243b5d7f06d7.jpg "enter image title here")  
+![enter image description here](../upload/bf35c1ae3ae8168ba898243b5d7f06d7.jpg "enter image title here")  
  
 在每个目录下添加config文件，
 
@@ -25,34 +25,34 @@ mongo是一个优秀的nosql数据库，在海量数据存储中，mongo起着�
 ![主服务器配置](https://blog.toreant.top/img/upload/2768efdecc90f3453549b78ff0367fa3.jpg)  
 
 #### secondaries1
-![从服务器1](./upload/717a5fe5ea3f3ce818c32ac2eb69bbbe.jpg)  
+![从服务器1](../upload/717a5fe5ea3f3ce818c32ac2eb69bbbe.jpg)  
 
 #### secondaries2  
-![从服务器2](./upload/a23803b79c1c466b4dc27277a2000585.jpg)  
+![从服务器2](../upload/a23803b79c1c466b4dc27277a2000585.jpg)  
 
 #### 监督服务器  
-![监督服务器](./upload/09305ad7917bfcdf0d453068f36e1caf.jpg)  
+![监督服务器](../upload/09305ad7917bfcdf0d453068f36e1caf.jpg)  
 
 ### 启动每个服务器
-![启动](./upload/b3f20df09d869c4f941857884c735065.jpg) 
+![启动](../upload/b3f20df09d869c4f941857884c735065.jpg) 
 
 ### 进入主服务器管理  
-![admin](./upload/3d24c16cd81d17300d8f4e3a4c877553.jpg)  
+![admin](../upload/3d24c16cd81d17300d8f4e3a4c877553.jpg)  
 
 ### 启用replica Set  
-![replica set](./upload/c911584ad8e14585ca15b6f5f7e20462.jpg)  
+![replica set](../upload/c911584ad8e14585ca15b6f5f7e20462.jpg)  
 
 ### 设置监督服务器  
-![set](./upload/fd48cd314b81cfd591adcb4d0a55addd.jpg)  
+![set](../upload/fd48cd314b81cfd591adcb4d0a55addd.jpg)  
 
 ### 查看状态  
-![status](./upload/6308cc06b5d4a9fdfc5b474f6b463544.jpg) 
-![status2](./upload/1db8db387dabd93cad0abad6b14eba3d.jpg)  
+![status](../upload/6308cc06b5d4a9fdfc5b474f6b463544.jpg) 
+![status2](../upload/1db8db387dabd93cad0abad6b14eba3d.jpg)  
 
 可以看到，端口号为27020的mongo服务器已经作为主服务器了。
 
 同时，主服务器接收所有的write请求，并向secondaries发送消息，进行数据同步。
-![replication](./upload/c8f9ac9cde234c35f9f53bf5ed0434e2.jpg) 
+![replication](../upload/c8f9ac9cde234c35f9f53bf5ed0434e2.jpg) 
 
 这样，数据就存储在不同的mongo服务器中，当primary宕机发生，也不用害怕数据丢失了。
 
