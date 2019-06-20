@@ -44,3 +44,35 @@
     <route-view v-else>
     </route-view>
     
+	
+## 源码  
+
+``<keep-alive>``中，mounted函数  
+
+	mounted () {
+		this.$watch('include', val => {
+		  pruneCache(this, name => matches(val, name))  // 筛选符合的includeName,不符合的删除（执行pruneCacheEntry）
+		})
+		this.$watch('exclude', val => {
+		  pruneCache(this, name => !matches(val, name)) // 筛选符合的excludeName，符合的删除（执行pruneCacheEntry）
+		})
+	},
+	
+在render函数中，最后
+
+	const vnode: VNode = getFirstComponentChild(slot)
+	/*
+	 * other code
+	 */
+	return vnode || (slot && slot[0])  // keep-alive只会渲染第一个组件或第一个slot
+	
+所以，如下代码，只会渲染出"1"
+
+	<div id="app">
+	  <keep-alive>
+		<p>1</p>
+		<p>2</p>
+		<p>3</p>
+	  </keep-alive>
+	</div>
+
