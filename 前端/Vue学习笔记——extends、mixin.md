@@ -2,6 +2,7 @@
 
 extends的优先级比mixin高。Vue源码：  
 
+	// src/core/util/options.js
     const extendsFrom = child.extends
     if (extendsFrom) {
         parent = mergeOptions(parent, extendsFrom, vm)
