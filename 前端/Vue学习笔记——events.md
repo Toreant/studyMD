@@ -23,4 +23,6 @@
 
 	Vue.config.keyCodes = {
 		append: 65 // 键盘敲击"A"
-	}
+	}  
+	
+	<input @keydown.append="fn" /> // 敲击键盘“A” 
