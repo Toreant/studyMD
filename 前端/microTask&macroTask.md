@@ -199,7 +199,13 @@ parent setTimeout
 
 ![micro-macro-task-8](../upload/micro-macro-task-8.jpg)
 
-事件循环会先把task队列中的事件消耗先。同时，由于，执行child的onclick事件时，会产生一个mutation observer,同时，micro-task队列中包含了mutation observer，所以，parent中的mutation observer并不会放入到micro-task队列中。  因此，micro-task中只会有一个mutation observer任务。
+事件循环会先把task队列中的事件消耗先。同时，由于，执行child的onclick事件时，会产生一个mutation observer,同时，micro-task队列中包含了mutation observer，所以，parent中的mutation observer并不会放入到micro-task队列中。  因此，micro-task中只会有一个mutation observer任务。  
+
+
+### setTimeout/setImmediate  
+
+如果两者在主线程中，执行的先后顺序取决于机器性能  
+如果两者在poll阶段（非主线程/异步回调函数里），setImmediate的执行由于setTimeout
 
 
 [参考博客](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)
