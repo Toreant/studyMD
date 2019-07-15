@@ -46,22 +46,21 @@ function Promise(fn) {
 
 重要的一点，resolve函数需要回传数据，而reject函数第一个参数必须是错误的信息。  
 
-<pre>
-function resolve(newValue) {
-	// resolve函数可能接收一个promise，所以这里判断一下
-	if (newValue && typeof newValue.then === 'function') {
-		newValue.then(resolve, reject);
-		return;
-	}
 
-	state = 'fulfilled';
-	value = newValue;
+    function resolve(newValue) {
+        // resolve函数可能接收一个promise，所以这里判断一下
+        if (newValue && typeof newValue.then === 'function') {
+            newValue.then(resolve, reject);
+            return;
+        }
 
-	if (deffered) {
-		deffered(value);
-	}
-}
-</pre>  
+        state = 'fulfilled';
+        value = newValue;
+
+        if (deffered) {
+            deffered(value);
+        }
+    }
 
 
 ### Promise中函数  

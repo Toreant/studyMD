@@ -12,28 +12,29 @@
 ![eventloop](../upload/eventloop.jpg)
 
 下面有一段代码：
-<pre>
-setTimeout(function B () {
-    console.log('输出setTimeout');
-}, 0);
 
-new Promise(function A () {
-    console.log('执行promise代码');
-    setImmediate(function () {
-        console.log('执行promise中的setImmediate代码');
+
+    setTimeout(function B () {
+        console.log('输出setTimeout');
+    }, 0);
+
+    new Promise(function A () {
+        console.log('执行promise代码');
+        setImmediate(function () {
+            console.log('执行promise中的setImmediate代码');
+        });
+        resolve();
+        console.log('执行promise代码2');
+    })
+    .then(function A1 () {
+        console.log('执行promise返回后的代码');
+    })
+    .then(function A2 () {
+        console.log('执行promise返回后的代码2');
     });
-    resolve();
-    console.log('执行promise代码2');
-})
-.then(function A1 () {
-    console.log('执行promise返回后的代码');
-})
-.then(function A2 () {
-    console.log('执行promise返回后的代码2');
-});
 
-console.log('执行外层代码');
-</pre> 
+    console.log('执行外层代码');
+
 
 输出的结果是： 
 <pre>
