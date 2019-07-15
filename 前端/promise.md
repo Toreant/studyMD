@@ -11,36 +11,37 @@
 	- 当promise状态为rejected时，执行onRejected函数，并只执行一次。  
 
 
-<pre>
-function Promise(fn) {
-	let state = 'pending';
-	let value = null;
-	let deffered = null;
+以下是实现思路：  
 
-	this.then = function (onFulfilled, onRejected) {
-		return new Promise(function (resolve, reject) {
-			handle({
-				onFulfilled: onFulfilled,
-				onRejected: onRejected,
-				resolve: resolve,
-				reject: reject
+	function Promise(fn) {
+		let state = 'pending';
+		let value = null;
+		let deffered = null;
+
+		this.then = function (onFulfilled, onRejected) {
+			return new Promise(function (resolve, reject) {
+				handle({
+					onFulfilled: onFulfilled,
+					onRejected: onRejected,
+					resolve: resolve,
+					reject: reject
+				});
 			});
-		});
-	};
+		};
 
-	function resolve(newValue) {}
+		function resolve(newValue) {}
 
-	function reject(newValue) {}
+		function reject(newValue) {}
 
-	function handle(handler) {
-		setImmediate(function () {
-			// do somthing
-		});
+		function handle(handler) {
+			setImmediate(function () {
+				// do somthing
+			});
+		}
+
+		fn(resolve, reject);
 	}
 
-	fn(resolve, reject);
-}
-</pre>  
 
 上面是一个Promise对象的大概构造过程，可以看到，构造函数里面执行的是同步操作，但是，then是一个异步操作的过程，这也是Promise规定。 为什么then里面是一个异步操作呢？是因为，一般promise会进行很多个then连接，如果then里面是一个同步过程，promise执行可能需要很长时间，造成后面的程序等待。所以，then里面可以用一个macro-task（setTimeout、setImmediate）或micro-task（process.nextTick）等，把then的程序放到事件队列的后面，避免主程序卡顿。
 

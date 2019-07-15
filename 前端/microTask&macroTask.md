@@ -100,63 +100,63 @@ task队列空了，在micro-task队列中，取出``function A1``，并放到tas
 
 为他们添加一组点击事件：
 
-<pre>
-var p = document.getElementById('parent'),
-    c = document.getElementById('child');
 
-var observer = new MutationObserver(function() {
-    console.log("mutated");
-}).observe(p, {
-    attributes: true
-});
+    var p = document.getElementById('parent'),
+        c = document.getElementById('child');
 
-p.addEventListener("click", function() {
-    console.log("parent click");
-
-    Promise.resolve().then(r => {
-        console.log("parent resolve");
+    var observer = new MutationObserver(function() {
+        console.log("mutated");
+    }).observe(p, {
+        attributes: true
     });
 
-    setTimeout(function() {
-        console.log("parent setTimeout");
-    }, 0);
+    p.addEventListener("click", function() {
+        console.log("parent click");
 
-    console.log("parent end");
+        Promise.resolve().then(r => {
+            console.log("parent resolve");
+        });
 
-    p.setAttribute("data-pa", Math.random());
-});
+        setTimeout(function() {
+            console.log("parent setTimeout");
+        }, 0);
 
-c.addEventListener("click", function() {
-    console.log("child click");
+        console.log("parent end");
 
-    Promise.resolve().then(r => {
-        console.log("child resolve");
+        p.setAttribute("data-pa", Math.random());
     });
 
-    setTimeout(function() {
-        console.log("child setTimeout");
-    }, 0);
+    c.addEventListener("click", function() {
+        console.log("child click");
 
-    p.setAttribute("data-pa", Math.random());
+        Promise.resolve().then(r => {
+            console.log("child resolve");
+        });
 
-    console.log("child end");
-});
-</pre>  
+        setTimeout(function() {
+            console.log("child setTimeout");
+        }, 0);
+
+        p.setAttribute("data-pa", Math.random());
+
+        console.log("child end");
+    });
+ 
 
 点击child，会在控制台输出：
 
-<pre>
-child click
-child end
-child resolve
-mutated
-parent click
-parent end
-parent resolve
-mutated
-child setTimeout
-parent setTimeout
-</pre>  
+
+    child click
+    child end
+    child resolve
+    mutated
+    parent click
+    parent end
+    parent resolve
+    mutated
+    child setTimeout
+    parent setTimeout
+ 
 
 由于点击事件默认采用冒泡的方式，所以，点击child时，会先触发child绑定的点击事件。执行onclick的函数，此时，会把``Promise.then``，``setTimeout``, ``mutation observer``事件分别放进micro-task、macro-task、micro-task队列中。  
 
@@ -184,17 +184,17 @@ parent setTimeout
 
 最后的输出结果是：
 
-<pre>
-child click
-child end
-parent click
-parent end
-child resolve
-mutated
-parent resolve
-child setTimeout
-parent setTimeout
-</pre>
+
+    child click
+    child end
+    parent click
+    parent end
+    child resolve
+    mutated
+    parent resolve
+    child setTimeout
+    parent setTimeout
+
 
 因为，当通过程序控制child点击事件，其实会同步的进行click事件冒泡，所以，此时task队列为：
 
