@@ -213,7 +213,7 @@ node通过中间件：[webpack-hot-middleware/middleware.js](https://github.com/
             hotAPI.createRecord("data-v-aafed0d8", Component.options)
         } else {
             hotAPI.reload("data-v-aafed0d8", Component.options)
-        ' + '  }
+        }
         module.hot.dispose(function (data) {
             disposed = true
         })
