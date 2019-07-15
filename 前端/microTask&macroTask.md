@@ -206,7 +206,7 @@ parent setTimeout
 ### setTimeout/setImmediate  
 
 如果两者在主线程中，执行的先后顺序取决于机器性能  
-如果两者在poll阶段（非主线程/异步回调函数里），setImmediate的执行由于setTimeout
+如果两者在poll阶段（非主线程/异步回调函数里），setImmediate的执行优于setTimeout
 
 
 [参考博客](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)
