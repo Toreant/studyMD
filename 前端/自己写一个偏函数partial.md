@@ -6,47 +6,52 @@
 
 例子：  
 
-    let add = function (a, b) {
-        return a + b
-    }
+```javascript
+let add = function (a, b) {
+    return a + b
+}
 
-    let addFn = partial(add, 1)
-    addFn(2)
-    //====> 1 + 2 = 3  
-
+let addFn = partial(add, 1)
+addFn(2)
+//====> 1 + 2 = 3  
+```
 
 ## 实现  
 
-    function partial(fn) {
-        let args = [].slice.call(arguments, 1) // 取出partial函数中，除了fn后面的参数
-        return function () {
-            let localArgs = [].slice.call(arguments)
-            return fn.apply(this, args.concat(localArgs))
-        }
-    }  
+```javascript
+function partial(fn) {
+    let args = [].slice.call(arguments, 1) // 取出partial函数中，除了fn后面的参数
+    return function () {
+        let localArgs = [].slice.call(arguments)
+        return fn.apply(this, args.concat(localArgs))
+    }
+}  
+```
 
 ## 实现占位符  
 
-    let _ = Symbol('_')
+```javascript
+let _ = Symbol('_')
 
-    function partial(fn) {
-        let args = [].slice.call(arguments, 1)
-        return function () {
-            let position = 0
-            for (let i = 0; i < args.length; i++) {
-                args[i] = args[i] === _
-                    ? arguments[position++]
-                    : args[i]
-            }
-
-            // 把arguments剩下的参数添加到args
-            while (position < arguments.length) {
-                args.push(arguments[position++])
-            }
-
-            return fn.apply(this, args)
+function partial(fn) {
+    let args = [].slice.call(arguments, 1)
+    return function () {
+        let position = 0
+        for (let i = 0; i < args.length; i++) {
+            args[i] = args[i] === _
+                ? arguments[position++]
+                : args[i]
         }
-    }  
+
+        // 把arguments剩下的参数添加到args
+        while (position < arguments.length) {
+            args.push(arguments[position++])
+        }
+
+        return fn.apply(this, args)
+    }
+}  
+```
 
 ## 偏函数和函数柯里化的区别  
 

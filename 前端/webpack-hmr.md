@@ -83,7 +83,7 @@ node通过中间件：[webpack-hot-middleware/middleware.js](https://github.com/
 
 创建createEventStream:  
 
-    function createEventString(heartbeat) {
+    function createEventStream(heartbeat) {
         return {
             handler: function(req, res) {
                 var headers = {

@@ -91,7 +91,9 @@ Array.from(arr)
 
 ## 判断一个数是否是一个合法的数  
 
-	function isValidNumber(v: any) {
-		let n = parseFloat(String(v))
-		return Math.floor(n) === n
-	} 
+```javascript
+function isValidNumber(v: any) {
+	let n = parseFloat(String(v))
+	return Math.floor(n) === n
+} 
+```
