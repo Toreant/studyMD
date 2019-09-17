@@ -83,7 +83,7 @@
 
 ##### 1. 首先检查oldVnode是否存在，不存在的话，直接插入新的节点vnode. 
 
-##### 2. oldVnode和vnode是否时相似节点，这里通过函数``sameVnode``来判断：  
+##### 2. oldVnode和vnode是否是相似节点，这里通过函数``sameVnode``来判断：  
 
         function sameVnode (a, b) {
             return (

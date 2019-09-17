@@ -224,7 +224,7 @@ node通过中间件：[webpack-hot-middleware/middleware.js](https://github.com/
 
 ### 总结：  
 
-1. webpack编译阶段，为每个module出入热更新代码逻辑
+1. webpack编译阶段，为每个module注入热更新代码逻辑
 2. 页面首次打开后，服务器与客户端通过sse进行连接，把下一次的hash传给前端
 3. 客户端获取到hash，这个hash将作为下一次请求服务端 hot-update.js 和 hot-update.json的hash
 4. 修改代码后，webpack触发更新逻辑，服务器发送message（{action: building}）到客户端，
