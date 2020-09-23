@@ -5,13 +5,19 @@
 ## 通用的基本柯里化  
 
 ```javascript
-function curry(fn) {
-    let args = [].slice.call(arguments, 1)
+var curry = function (fn) {
+    var argsLen = fn.length // fn函数需要的参数个数
+    var args = [].slice.call(arguments, 1) // 额外提供的参数
+
     return function () {
-        let finalArgs = args.concat([].slice.call(arguments))
-        returen fn.apply(this, finalArgs)
+        var finalArgs = args.concat([].slice.call(arguments))
+        if (finalArgs.length === argsLen) {
+          return fn.apply(this, finalArgs)
+        } else {
+          return curry.apply(this, [fn].concat(finalArgs))
+        }
     }
-}  
+}
 ```
 
 ## 可以占位的柯里化   
